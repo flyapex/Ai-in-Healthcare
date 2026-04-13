@@ -45,6 +45,11 @@ print("First 5 records:\n", df.head())
 print("\nMissing values per column:\n", df.isnull().sum())
 
 # 2. Correlation Matrix: Top 5 features most correlated with 'Outcome'
+# Correlation ranges from:
+# +1 → strong positive relationship
+# 0 → no relationship
+# -1 → strong negative relationship
+
 corr_matrix = df.corr()
 top_5_features = (
     corr_matrix["Outcome"].abs().drop("Outcome").sort_values(ascending=False).head(5)
@@ -65,9 +70,10 @@ X_scaled_df = pd.DataFrame(X_scaled, columns=X.columns)
 print("\n--- PHASE B: Model Implementation ---")
 
 X_train, X_test, y_train, y_test = train_test_split(
-    X_scaled_df, y, test_size=0.2, random_state=42
+    X_scaled_df, y, test_size=0.2, random_state=42 
 )
 
+# random_state = 42 to ensure reproducible results
 models = {
     "Logistic Regression": LogisticRegression(random_state=42),
     "Random Forest": RandomForestClassifier(random_state=42),
