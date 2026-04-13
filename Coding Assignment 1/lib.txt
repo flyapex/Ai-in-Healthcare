@@ -1,0 +1,1 @@
+pip install kagglehub pandas numpy matplotlib seaborn scikit-learn
